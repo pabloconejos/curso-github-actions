@@ -1,0 +1,28 @@
+name: triggers-github-actions
+on:
+  push:
+    branches:
+        - main          # Ejecutar en push a la rama principal
+        - aprendiendo-github-actions
+  pull_request:
+    branches:
+        - main          # Ejecutar en push a la rama principal
+        - aprendiendo-github-actions
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  hola-mundo:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Public IP
+        id: ip 
+        uses: haythem/public-ip@v1.3 
+      - name: Hola mundo
+        run: echo ¡Hola Mundo desde ${{ steps.ip.outputs.ipv4 }}!
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Run index
+        run: node index.js
+  

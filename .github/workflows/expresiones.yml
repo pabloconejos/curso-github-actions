@@ -1,0 +1,22 @@
+name: expresiones
+
+on:
+  push:
+    branches:
+      - main                  # Ejecutar en push a la rama principal
+      - aprendiendo-github-actions
+
+jobs:
+  main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Saludo desde main
+        run: echo "¡Hola Mundo desde main!"
+
+  aprendiendo-github-actions:
+    if: github.ref == 'refs/heads/aprendiendo-github-actions'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Saludo desde aprendiendo-github-actions
+        run: echo "¡Hola Mundo desde aprendiendo-github-actions!"
